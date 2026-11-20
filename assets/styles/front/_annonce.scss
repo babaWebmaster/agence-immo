@@ -1,0 +1,199 @@
+
+@use "../abstracts/index" as baba;
+
+.annonces {
+   
+    position: relative;
+    background-color: baba.$color-blue-light;
+    padding-bottom: clamp(150px, 5vw, 200px);   
+    z-index: 1;
+
+    /*&__svg {
+        display: block;
+        width: 100%;
+        position: absolute;  
+        fill: url(#blueGradient);        
+        @include baba.noise-bg();
+
+    }   */
+
+    &__title {
+        position: relative;
+        z-index: 1;
+        color: baba.$color-blue;
+        font-size: baba.$font-size-h2;
+        font-family: baba.$font-title;
+        padding: 30px;
+        text-align: left;
+        letter-spacing: 2px;
+        margin-top: 0px;
+       //transform: translateY(clamp(-80px,2vw,-200px));
+       transform: translateY(clamp(-100px, -10vw, -80px));
+        @include baba.media-up('md'){
+          font-size: baba.$font-size-h1;
+        }     
+    }
+
+    &__wrapper__btn{
+      display: flex;     
+      justify-content: center;
+      align-items: start;
+      padding-left: 20px;
+      padding-right: 20px;      
+      // transform: translateY(clamp(-80px,2vw,-200px));
+       transform: translateY(clamp(-100px, -10vw, -80px));
+       background-color: baba.$color-blue;
+       padding-bottom: 40px;       
+       border-radius: 10px;
+       box-shadow: 10px 10px 50px baba.$color-blue-2;
+       @include baba.media-up('xs'){
+        margin: auto;
+       }
+      @include baba.col('xs', 11);   
+
+      @include baba.col('md', 8);
+      @include baba.offset('md', 3);
+
+      @include baba.col('lg', 7);
+      @include baba.offset('lg', 4);
+
+      @include baba.col('xl', 6);
+      @include baba.offset('xl', 4);       
+      p{
+        color:baba.$color-bg;
+        font-size: baba.$font-size-paragraphe-2;
+        letter-spacing: 1px;
+        padding: 3px;
+        font-family: baba.$font-body;       
+      }
+    }
+    &__btn{
+      display: inline-block;
+      font-size: baba.$font-size-paragraphe-2;    
+    }
+    &__para{
+      width: 100%;        
+    }
+    &__img{
+      width: 100%;
+      border-radius: 5px 5px 0px 0px;
+      box-shadow: 0px 4px 10px rgba(baba.$color-blue, 0.5);      
+      object-fit: cover;
+    }
+    &__details{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    &__block{
+        display: flex;        
+        @include baba.direction('xs',column-reverse);
+        @include baba.direction('sm', row);
+        
+      }
+
+    &__annonce{
+      display: flex;
+      flex-direction: column;      
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      border: solid 1px transparent;
+      margin-bottom: clamp(50px, 11vw, 100px);
+      box-shadow: 0px 10px 40px rgba(baba.$color-blue,0.1);
+     // border-image: linear-gradient(to left, baba.$color-bg-blue, baba.$color-blue) 1;    
+      @include baba.col('xs', 12);
+      @include baba.col('sm', 10);
+      @include baba.col('md', 8);
+      @include baba.col('lg', 5);
+      @include baba.col('xl', 5);
+      &--offset{
+       @include baba.offset('xl', 1); 
+      }
+      &__title{
+        @include baba.col('xs', 12);
+        @include baba.col('md', 10);
+        letter-spacing: 2px;
+        color: baba.$color-blue;
+        font-family: baba.$font-title;
+        font-size: baba.$font-size-h3;
+      }      
+      &__block__left{
+        @include baba.col('xs', 12);
+        @include baba.col('sm', 8);
+        position: relative;        
+        p{
+          font-size: baba.$font-size-paragraphe-2;
+          font-family: baba.$font-body;
+          color:baba.$color-text;
+          letter-spacing: 1px;
+        }
+        .annonces__img {
+          //  height: clamp(150px, 20vw, 250px);
+          height: 100%;
+          width: 100%;
+            transition: width 0.2s ease, height 0.2s ease;
+            &.tr{
+              width: 0%;
+              height: 0px;
+            }
+        }
+        .annonces__picture{
+           
+            display: block;
+            height: clamp(150px, 20vw, 250px);
+            overflow: hidden;         
+        }
+      }
+      &__block__right{
+        @include baba.media-up('xs'){
+          display: grid;
+          grid-template-columns: 2fr repeat(3, 1fr);
+          align-items: center;
+        }
+        @include baba.media-up('sm'){
+          display: flex;
+          align-items: start
+        }
+        
+        
+        @include baba.direction('xs', row);
+        @include baba.direction('sm', column);        
+        @include baba.col('xs',12);
+        @include baba.col('sm', 3);
+        @include baba.offset('sm', 1);
+        .annonces__picture:hover{
+          cursor:pointer;
+        }        
+        .annonces__img {
+            height: clamp(70px, 8vw, 100px);
+        }
+        
+      }
+      &__btn{
+        margin-bottom: clamp(20px, 2vw, 100px);
+        font-size: baba.$font-size-paragraphe-2;    
+      }     
+
+    }
+    &__info{
+      margin-top: 10px;
+      color: baba.$color-blue;
+      font-family: baba.$font-body;
+      font-size: baba.$font-size-paragraphe-3;
+      letter-spacing: 1px;
+      font-weight: 500; 
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap:5px;
+      &>svg{
+        display: block;
+         width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        margin-right: 2px;        
+      }
+    }
+}

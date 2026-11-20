@@ -1,0 +1,113 @@
+{% import 'front/macros/form.html.twig' as formMacro %}
+
+ {{ form_start(form_search_annonce, {
+            'attr': {
+            'id': 'search_form',
+            'data-form-url': data_form_url|default(null)
+         }
+        })}}
+  <input type="hidden"
+          id="autocomplete-token"
+         value="{{ autocompleteToken }}">
+
+    <input type="hidden" name="page" value="{{ page is defined ? page : 1 }}">
+
+        
+             <div class="hero__wrapper-fieldsets--mobile"></div>
+            <div class="hero__wrapper-fieldsets--destock">
+
+                <div class="hero__search-form__wrapper-first">
+                    <div id="search-mobile-type" class="hero__search-form__field hero__search-form__field--type">
+                         {{ formMacro.mobileHeader(
+                        form_label(form_search_annonce.type, null,{
+                           'label_attr': {
+                            'class': 'hero__label--mobile hero__label-type-bien'
+                             } 
+                        }),
+                        'search-mobile-type' )}}
+
+                        {{ form_label(form_search_annonce.type, null) }}
+                        {{ form_widget(form_search_annonce.type) }}
+                    </div>
+
+                    <div id="search-mobile-chambres" class="hero__search-form__field hero__search-form__field--chambres">
+
+                        {{ formMacro.mobileHeader(
+                        form_label(form_search_annonce.chambres,null,{
+                         'label_attr': {
+                            'class': 'hero__label--mobile hero__label-chambres'
+                             }    
+                        }),
+                        'search-mobile-chambres' )}}
+
+                        {{ form_label(form_search_annonce.chambres) }}
+                        {{ form_widget(form_search_annonce.chambres) }}
+                    </div>
+
+            </div>
+           
+            <div class="hero__search-form__wrapper-second">
+                 <div id="search-mobile-loyer" class="hero__search-form__field hero__search-form__field--loyer">
+
+                        {{ formMacro.mobileHeader(
+                        '<label class="hero__label-loyer hero__label--mobile">Loyer €</label>',
+                        'search-mobile-loyer' )}}
+                        
+
+                        <label class="hero__label-loyer hero__label--desktop">Loyer €</label>
+                        <div class="hero__input-loyer">
+
+                            <div class="">
+                                {{ form_label(form_search_annonce.loyerMin) }}
+                                {{ form_widget(form_search_annonce.loyerMin) }}
+
+                            </div>
+                            <div class="">
+                                {{ form_label(form_search_annonce.loyerMax) }}
+                            {{ form_widget(form_search_annonce.loyerMax) }}
+
+                            </div>
+
+                        
+                        </div>
+                        
+                    </div>
+                <div id="search-mobile-ville" class="hero__search-form__field hero__search-form__field--ville">
+
+                   
+                     {{ formMacro.mobileHeader(
+                        form_label(form_search_annonce.villeRecherche,null,{
+                         'label_attr': {
+                            'class': 'hero__label--mobile hero__label-ville'
+                             }    
+                        }),
+                        'search-mobile-ville' )}}
+                     <div class="hero__search-form__villes-selected">
+                    </div>
+                    <div class="hero__search-form__field--ville-wrapper">
+                    {{ form_label(form_search_annonce.villeRecherche) }}
+                    {{ form_widget(form_search_annonce.villeRecherche) }}
+                    </div>
+                    <div class="hero__search_form__autocomplete-list" id="autocomplete-ville-list" role="listbox">
+                    </div>
+                    <div class="hero__danger-max-ville hero__danger-max-ville--opacity-null">Vous ne pouvez pas sélectionner plus de 3 villes</div>
+
+                    {{ form_widget(form_search_annonce.villes) }}
+
+                </div>
+            </div></div>
+             <div class="hero__search-form__wrapper-three">
+                <div class="hero__search-form__submit-wrapper">
+                     <button type="submit" class="hero__search-form__submit btn">
+                    Rechercher
+                </button>
+
+                </div>
+               
+            </div>
+
+            {{ form_end(form_search_annonce, {
+                render_rest: false
+            }) }}
+
+            <div class="hero__count"></div>

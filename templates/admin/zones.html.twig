@@ -1,0 +1,61 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <div class="content">
+
+        <h1>Gestion des zones</h1>
+
+        <div data-controller='admin--zones'>
+        {{ form_start(form) }}
+
+        {% for region in regions %}
+
+            <div class="zone-region">
+
+                <div class="zone-region__header">
+
+                    {% for regionChoice in form.regions %}
+                        {% if regionChoice.vars.value == region.id %}
+                            {{ form_widget(regionChoice) }}
+                            {{ form_label(regionChoice) }}
+                           
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+
+                <details class="zone-region__details">
+                    <summary class="zone-region__summary">Départements</summary>
+                    <div class="zone-region__departements">
+                    {% for departement in region.departements %}
+
+                        {% for departementChoice in form.departements %}
+
+                            {% if departementChoice.vars.value == departement.id %}
+                                <div class="zone-region__departements__departement">
+                                    {{ form_widget(departementChoice) }}
+                                    {{ form_label(departementChoice) }}
+
+                                    
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endfor %}
+                    </div>
+
+                </details>
+
+            </div>
+
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">
+            Enregistrer
+        </button>
+
+        {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

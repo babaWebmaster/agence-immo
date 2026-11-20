@@ -1,0 +1,15 @@
+{% import 'front/macros/loaderImg.html.twig' as loaderImg %}
+
+ {{thumbnail|raw}}
+
+    <div class="hero__slider">
+         {% include 'front/annonce/_controlSlider.html.twig' %}
+                   
+        {% for image in images %}
+            <div class="hero__slide hero__slide--{{ loop.index0 }} {% if loop.first %} hero__slide--is-active{% else %}hero__slide__is-transform-piece{% endif %}" data-slide ={{ loop.index0 }}>
+             
+            </div>
+        {% endfor %}
+    </div>  
+</div>
+

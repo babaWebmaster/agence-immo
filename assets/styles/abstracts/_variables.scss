@@ -1,0 +1,114 @@
+// assets/styles/_variables.scss
+// Couleurs principales de votre palette
+@use "sass:color";
+
+// ========================================
+// COLORS
+// ========================================
+
+// Brand
+$color-blue: #173B5F;
+$color-blue-2: #2D638A;
+$color-blue-light: #DCE8EF;
+
+// Backgrounds
+$color-bg-blue: #F2F6F8;
+$color-bg: #F8F8F6;
+
+// Text
+$color-text: #182027;
+$color-text-secondary: #66727B;
+
+// Accent
+$color-sand: #C8B89A;
+
+$gradient-primary: linear-gradient(
+        135deg,
+        $color-blue 0%,
+        $color-blue-2 100%
+    );
+
+$gradient-primary-2: linear-gradient(
+        135deg,
+        rgba($color-blue,0.9) 0%,
+        $color-blue-2 100%
+    );
+
+
+//border
+$gradient-border:  linear-gradient(
+    135deg,
+    darken($color-blue,10%),
+    $color-blue-2,
+    $color-blue-light
+) 1;
+
+$gradient-border:  linear-gradient(
+    135deg,
+    darken($color-blue,10%),
+    $color-blue-2,
+    $color-blue-light
+) 1;
+
+
+
+$gradient-border-2: linear-gradient(
+    135deg,
+     darken($color-blue,10%) 0%,
+    $color-blue-2 50%,
+    $color-blue-light 100%
+)1;
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+$font-title: "DM Serif Display", serif;
+$font-body: "Manrope", sans-serif;
+
+
+// ========================================
+// FONT WEIGHTS
+// ========================================
+
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+
+// ========================================
+// LAYOUT
+// ========================================
+
+$container-max-width: 1280px;
+$container-padding: 24px;
+
+
+// ========================================
+// BREAKPOINTS
+// ========================================
+
+// Ceci est une MAP Sass
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+
+/*font size*/
+$font-size-h1: clamp(2.5rem, 3.5vw, 3.5rem);
+$font-size-h1-bis: clamp(2rem, 2vw, 2.5rem);
+$font-size-h2: clamp(1.5rem, 1.1vw, 2.5rem);
+$font-size-h3: clamp(1.5rem, 1.5vw, 2rem);
+$font-size-h4: clamp(1.2rem, 1.5vw, 2rem);
+$font-size-body: 1rem;
+$font-size-paragraphe: clamp(1.1rem, 1.1vw, 1.7rem);
+$font-size-paragraphe-2: clamp(1rem, 1.1vw, 1.2rem);
+$font-size-paragraphe-3: clamp(0.8rem, 1.1vw, 1.1rem);
+$font-size-paragraphe-4: clamp(0.8rem, 1.1vw, 1rem);
+$font-size-cta: clamp(1.3rem, 1.2vw, 1.7rem);

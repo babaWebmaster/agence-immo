@@ -1,0 +1,95 @@
+@use "../abstracts/index" as baba;
+
+.hero {
+    //min-height: clamp(500px, 65vh, 800px);
+    @include baba.media-up('xs'){
+         height: 55vw;
+         max-height: 450px;     
+         min-height: 350px;
+    }
+    @include baba.media-up('md'){
+        height: auto;
+        max-height: none;
+        min-height: clamp(500px, 65vh, 800px);
+    }
+
+    position: relative;
+    &__picture{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+       
+        z-index: 0;
+    }
+    &__img{
+        width: 100%;
+        height: 100%;
+         
+        object-fit: cover;
+        object-position: 30% center;
+    }
+    &__intro{             
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        @include baba.col('md',5);
+        @include baba.col('lg',4);
+         position: absolute;
+         z-index: 1;        
+         padding: 10px 10px;
+         @include baba.media-up('xs'){
+            bottom: 0%
+         }
+        @include baba.media-up('md'){
+             bottom: initial;             
+             right: 0;             
+             top: 50%;
+             transform: translateY(-50%);  
+        }
+        
+       
+    }
+    &__title{
+        @include baba.media-up('xs'){
+            @include baba.heading-2();
+        }
+        @include baba.media-up('md'){
+        @include baba.heading-1();}
+
+        color: baba.$color-bg;
+    }
+    &__svg{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left:0;
+        fill:url(#heroFadeMobile);        
+        @include baba.media-up('md'){
+        fill:url(#heroFade);
+        top: 0;
+        right: 0;             
+        height: 100%;
+        width: auto;
+        bottom: auto;
+        left: auto;  
+        }        
+    }
+    &__paragraphe{
+        color:baba.$color-bg;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        font-size: baba.$font-size-paragraphe;
+        font-family: baba.$font-body;
+    }
+    &__btn{
+        @include baba.media-up('xs'){
+            font-size: baba.$font-size-paragraphe-2;
+        }
+        @include baba.media-up('md'){
+            font-size: baba.$font-size-paragraphe;
+        }
+        align-self: flex-start;
+        margin-top: 20px;       
+    }
+   
+}

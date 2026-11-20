@@ -1,0 +1,98 @@
+.gallery{
+    top:0;
+    left:0;
+    z-index: 5000;
+    background-color: rgba(244, 244, 244, 0.9);
+    width: 100%;
+    height: 100%;    
+
+    &__close{
+        position: absolute;
+        top:5px;
+        right: 5px;
+        background-color: transparent;
+        border: 0;  
+        padding: 5px;
+        cursor: pointer;
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+    &__select{
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: 0;
+        border-radius: 5px;
+        background: #111;
+        color: #fff;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.85;
+        }
+    }
+    &__item{
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+                border-color 0.15s ease;
+        &:hover{
+            
+            transform: scale(1.1);
+        }
+        &--select{
+            border: 2px solid black;
+        }
+        
+    }
+}
+
+.gallery-selected{
+    position: relative;
+    padding-bottom: 300px;
+    &__wrapper{
+        position: relative;
+    }
+    &__wrapper{
+         touch-action: none;
+        &:hover{
+            cursor: move;
+            .gallery-selected__wrapper__img--delete{
+            opacity: 1;
+            transform: scale(1.1);
+            background-color: #fff;           
+            }
+        }
+        &--widthNull{
+               width: 0;
+            min-width: 0;
+            overflow: hidden;
+        }
+    }
+    &__wrapper__img--delete{
+        background-color: transparent;
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        border: 0;  
+        padding: 5px;
+        cursor: pointer;
+        opacity: 0.8;        
+    }
+    &__drop-zone{
+        border: 1px black dashed;
+    }
+}
+
+.form-select-custom{
+        max-height: 0px;
+        overflow: hidden;
+        opacity: 0;
+        position: absolute;
+        
+}
+
+#Annonce_annonceImages{
+    opacity: 0;
+    max-height: 0px;
+    overflow: hidden;
+}

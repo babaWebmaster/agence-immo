@@ -1,0 +1,16 @@
+ <div class="hero__slider__thumbnails">      
+        {% for image in images %}
+        <div class="hero__slide__thumbnail hero__slide__thumbnail--{{ loop.index0 }} {% if loop.first %} hero__slide__thumbnail--is-active{% endif %}" data-slide-thumbnail ={{ loop.index0 }}>
+               <img
+                class="hero__slide__thumbnail__img {% if loop.first %} hero__slide__thumbnail__img--is-selected {% endif %}"
+                data-avif="{{ image.avif }}"
+                data-webp="{{ image.webp }}"               
+                src=""
+                alt="{image.alt}"
+                >
+                
+             
+        </div>
+        {% endfor %}
+        
+    </div>

@@ -1,0 +1,26 @@
+
+<div class="pagination">
+
+    {% if currentPage > 1 %}
+        <button class="pagination__prev" type="button" data-page="{{ currentPage - 1 }}">
+            ← Précédente 
+        </button>
+    {% endif %}
+
+    {% for page in pagination %}
+        <button
+            class="pagination__page{% if page == currentPage %} pagination__page--is-active{% endif %}"
+            type="button"
+            data-page="{{ page }}"
+        >
+    {{ page }}
+</button>
+    {% endfor %}
+
+    {% if currentPage < maxPage %}
+        <button class="pagination__next" type="button" data-page="{{ currentPage + 1 }}">
+            Suivante →
+        </button>
+    {% endif %}
+
+</div>

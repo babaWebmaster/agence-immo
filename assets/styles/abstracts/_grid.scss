@@ -1,0 +1,89 @@
+@use "sass:math";
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+@mixin col($breakpoint, $span, $columns: 12) {
+    $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+    @media (min-width: $min-width) {
+        flex: 0 0 auto;
+        width: percentage(math.div($span, $columns));
+    }
+}
+
+@mixin justify($breakpoint, $value){
+     $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+     @media (min-width: $min-width) {
+        justify-content: $value;
+    }
+}
+
+@mixin justifyItems($breakpoint, $value){
+     $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+     @media (min-width: $min-width) {
+        justify-items: $value;
+    }
+}
+
+@mixin alignContent($breakpoint, $value){
+     $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+     @media (min-width: $min-width) {
+        align-content: $value;
+    }
+}
+
+@mixin align($breakpoint, $value){
+     $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+     @media (min-width: $min-width) {
+        align-items: $value;
+    }
+}
+
+@mixin direction($breakpoint, $value){
+     $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+     @media (min-width: $min-width) {
+        flex-direction: $value;
+    }
+}
+
+@mixin offset($breakpoint, $span, $columns: 12) {
+    $min-width: map.get($breakpoints, $breakpoint);
+
+    @if $min-width == null {
+        @error "Breakpoint '#{$breakpoint}' inconnu.";
+    }
+
+    @media (min-width: $min-width) {       
+        margin-left: percentage(math.div($span, $columns));
+    }
+}
+

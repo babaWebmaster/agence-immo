@@ -1,0 +1,326 @@
+@use "../abstracts/index" as baba;
+
+.contact {
+    position: relative;    
+    background-color: baba.$color-blue;
+    padding-bottom: 100px;
+
+    @include baba.media-up('xs'){
+       background: linear-gradient(
+        155deg,
+        baba.$color-blue 0%,
+        #173b5f 35%,
+        baba.$color-blue-2 100%
+    );
+    }
+    @include baba.media-up('lg'){
+         background: linear-gradient(
+        155deg,
+        baba.$color-blue 0%,
+        #173b5f 45%,
+        baba.$color-blue-2 140%
+    );
+    animation: contact-background 12s ease-in-out infinite alternate;
+    }  
+   
+    
+    &__wrapper-form-address{
+      display: flex;
+      @include baba.direction('xs',column);
+      @include baba.direction('lg',row);
+    }
+    &__wrapper__form{
+      margin: auto;
+      @include baba.col('xs', 12);
+      @include baba.col('sm', 10);
+      @include baba.col('lg', 7);
+      @include baba.col('xl', 6);
+    }    
+    &__title{
+      position: relative;
+      z-index: 1;
+      color:baba.$color-blue-light;
+      font-family: baba.$font-title;
+      font-size: baba.$font-size-h2;
+       @include baba.media-up('md'){
+          font-size: baba.$font-size-h1;
+        }
+        }       
+
+   /* &__svg {
+        display: block;
+        width: 100%;       
+        fill: baba.$color-blue;
+        position: absolute;
+    }*/
+
+    &__form{
+      position: relative;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      @include baba.col('xs',12);
+      isolation: isolate;
+      &::after{
+        position: absolute;        
+        top:-50%;
+        left:-50%;
+        content: '';
+        width: 200%;
+        height: 200%;
+        pointer-events: none;
+       background: radial-gradient(
+            ellipse 50% 55% at center,
+            rgba(baba.$color-blue-2,0.8) 0%,
+            rgba(baba.$color-blue,0.8) 40%,
+            transparent 75%
+        );      
+        z-index: -1;
+      }
+      &__honeypot{
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: -5;
+      }
+      &__prenom,&__nom,&__email,&__tel{
+        padding: 10px;
+        width: 90%;
+        display: inline-block;
+        margin: 10px 5%;
+        font-family: baba.$font-body;        
+        margin-bottom: clamp(50px, 5vw, 150px);
+        border:solid 2px baba.$color-blue-light;
+        transition: border-color 0.5s ease;
+        font-size: baba.$font-size-paragraphe-3;
+        letter-spacing: 1px;
+        color:baba.$color-text;
+        &:focus-visible{
+          outline: none;
+           border-color: baba.$color-sand;
+          box-shadow:
+          inset 0 0 30px rgba(51, 240, 224, 0.12),
+          0 0 15px baba.$color-blue-2;         
+        }
+        &::placeholder{
+        color: baba.$color-text;
+        opacity: 0;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-3;
+        }          
+      }
+      &__message{
+        width: 90%;
+        margin: 10px 5%;
+        padding: 10px;
+        font-family: baba.$font-body;   
+        border:solid 1px baba.$color-sand;
+        height: clamp(300px, 5vw, 400px);
+        border:solid 1px baba.$color-sand;
+        transition: border-color 0.5s ease;
+        font-size: baba.$font-size-paragraphe-3;
+        color:baba.$color-text;
+
+        @include baba.media-up('sm'){
+          width: 95%;
+           display: inline-block;
+          margin: 10px 2.5%;
+        }
+        &:focus-visible{
+          outline: none;
+           border-color: baba.$color-blue-light;
+          box-shadow:
+          inset 0 0 30px rgba(51, 240, 224, 0.12),
+          0 0 15px baba.$color-blue-2;         
+        }
+         &::placeholder{
+          opacity: 0;
+        }
+      }
+      &__submit{
+        display: block;
+        margin: auto;
+        border: none;
+        margin-top: clamp(20px, 5vw , 50px);
+      }
+      &__label__prenom,&__label__nom,&__label__tel,&__label__email{
+          display: inline-block;
+          margin: 10px 5%;
+          font-family: baba.$font-body;
+          font-size: baba.$font-size-paragraphe-3;
+          letter-spacing: 1px;
+          color:baba.$color-blue-light;
+        }
+      &__label__message{
+        margin: 10px 5%;
+         display: inline-block;
+         font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-3;
+        letter-spacing: 1px;
+        color:baba.$color-blue-light;
+        @include baba.media-up('sm'){
+          width: 95%;
+           display: inline-block;
+          margin: 10px 2.5%;
+        }       
+      }
+     
+    }
+
+  &__address__svg{
+    width: fit-content;
+    @include baba.media-up('xs'){
+      grid-column: 2;
+    }    
+     svg {
+       width: 150px;
+       height: 100px;
+       transform-origin: top left;
+        path,
+        text {
+            fill: baba.$color-blue-light !important;
+        }
+      //  margin-bottom: clamp(50px, 5vw, 200px);        
+    }
+     /*  @include baba.col('xs', 12);
+        @include baba.col('sm', 5);
+        @include baba.col('lg', 12);
+        @include baba.col('xl', 5);*/
+  }
+  &__address{
+    span{
+      display: block;
+      font-style: normal;
+      font-size: baba.$font-size-paragraphe-2;
+      font-family: baba.$font-body;
+      letter-spacing: 1px;
+    }
+    &__tel,&__ville,&__rue{
+      margin-top: 10px;
+      color: baba.$color-blue-light;
+    }
+    &__tel{
+      a{
+        text-decoration: none;
+        color: baba.$color-sand;
+        cursor: pointer;
+        &:hover{
+           color: baba.$color-blue-light;
+        }
+      } 
+    }
+    &__day,&__morning,&__after{
+      display: block;
+      margin-top: 10px;
+      letter-spacing: 1px;
+      color:baba.$color-blue-light;
+      font-family: baba.$font-body;
+      font-size: baba.$font-size-paragraphe-2;
+      width: fit-content;
+    }
+    &__after{
+      margin-bottom: 40px;
+    }
+    &__day{
+      border-bottom: 1px solid baba.$color-bg;
+    }
+    &__horaire{
+      margin-top: 50px;
+    }
+    
+  }
+  &__wrapper-address-hour{
+    @include baba.media-up('xs'){
+      grid-column: 2;
+    }  
+    //@include baba.col('sm', 12);
+   
+    @include baba.col('xl', 5);
+  }
+ &__wrapper__address {
+       
+        @include baba.media-up('xs') {
+            display: grid;
+            grid-template-columns: 1fr max-content 1fr;
+        }
+        @include baba.direction('xs', column);
+
+        @include baba.col('sm', 10);       
+        @include baba.align('sm', center);
+        @include baba.direction('sm', row);
+    
+        @include baba.justify('sm', center);
+
+        @include baba.col('lg', 5);       
+        @include baba.media-up('sm') {
+            column-gap: 30px;
+            display: flex;
+        }
+        @include baba.direction('sm', row);
+        @include baba.align('sm', center);
+
+        @include baba.media-up('xs'){
+        margin-top: 50px;
+        }
+
+         @include baba.media-up('lg'){
+        margin-top: initial;
+        }
+
+        @include baba.col('xl', 6);
+  }
+
+
+  &__cursor{
+    display: inline-block;
+    width: 2px;    
+    margin-left: 3px;
+    background: baba.$color-text;
+   // animation: blink 0.8s step-end infinite;
+    height: 100%;
+    &--opacity--null{
+      opacity: 0;
+    }
+    &__cursor--blink{
+    animation: blink 0.8s step-end infinite;
+    }
+  }
+  &__typewriter{     
+     font-family: baba.$font-body;
+     font-size: baba.$font-size-paragraphe-3;
+     display: inline-block;
+     letter-spacing: 1px;
+     color:baba.$color-text-secondary;
+     font-weight: 600;     
+  }
+  &__wrapper__cursor__typewriter {
+    box-sizing: border-box;
+    cursor: text;
+    position: relative;
+    &--opacity-null{
+      opacity: 0;
+      z-index: -5;
+    }
+  }
+  &__field{
+    position: relative;
+    @include baba.col('xs', 12);
+    @include baba.col('sm', 6);    
+  }
+  &__textarea{
+    @include baba.col('xs', 12);
+  }
+
+}
+
+
+.error__input-form{
+  @include baba.errorInputForm();
+}
+
+.error__label-form{
+  @include baba.errorLabelForm();
+}
+

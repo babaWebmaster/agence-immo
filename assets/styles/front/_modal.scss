@@ -1,0 +1,82 @@
+@use "../abstracts/index" as baba;
+
+.modal {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .6);
+    width: 100dvw;
+    height: 100%;
+    @include baba.media-up('xs'){
+        padding-left: initial;
+        padding-right: initial;
+    }
+    @include baba.media-up('sm'){
+        padding: 20px;
+    }
+
+
+    &__content {
+        position: relative;
+        width: 100%;
+        @include baba.col('xs',12);
+        @include baba.col('md',10);
+        @include baba.col('lg',6);
+        padding: 35px;
+        background: baba.$gradient-primary;
+        border-radius: 5px;       
+    }
+
+    &__close {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        border: 0;
+        background: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: baba.$color-text-secondary;
+        transition: color 0.3s ease;
+        &:hover{
+            color: baba.$color-text;
+        }
+    }
+
+    &__body {
+        color: #182027;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-3;
+        list-style-position: inside;
+        color: baba.$color-text;
+        padding-left: 0px;
+        > li{
+            padding-top:10px ;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            &:nth-child(odd) {
+            background-color: darken(baba.$color-bg, 5%);
+            border-radius: 10px;                     
+            }
+            &:nth-child(even){
+                color: baba.$color-bg;  
+            }
+
+        }
+        
+    }
+
+    &--none{
+        display: none;
+    }
+
+}

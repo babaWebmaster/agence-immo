@@ -1,0 +1,20 @@
+@forward 'variables';
+@forward 'mixins';
+@forward 'functions';
+@forward 'utilities';
+@forward 'grid';
+
+/* === CORE BOOTSTRAP (obligatoire pour grid) === */
+/*@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps"; 
+@import "bootstrap/scss/mixins";*/
+
+/* === GRID SYSTEM === */
+//@import "bootstrap/scss/grid";
+
+/* === RESPONSIVE BREAKPOINTS + UTILITIES LOGIQUES === */
+//@import "bootstrap/scss/utilities";
+
+/* Génère les classes utilitaires (important) */
+//@import "bootstrap/scss/utilities/api";

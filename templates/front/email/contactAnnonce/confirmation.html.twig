@@ -1,0 +1,69 @@
+
+{% extends 'front/email/base.html.twig' %}
+
+{% block subject %}Confirmation de votre demande – Agence Baes{% endblock %}
+
+{% block content %}
+
+    <h1 style="margin:0 0 25px; color:#173b5f; font-size:23px; font-weight:600;">
+        Bonjour {{ prenom }} {{ nom }},
+    </h1>
+
+    <p style="font-size:15px; line-height:1.7; margin:0 0 18px;">
+        Nous vous confirmons la bonne réception de votre demande concernant ce bien.
+    </p>
+
+    <p style="font-size:15px; line-height:1.7; margin:0 0 25px;">
+        <a href="{{ annonceUrl }}" style="color:#173b5f; font-weight:600;">
+            Consulter l'annonce
+        </a>
+    </p>
+
+    {% if disponibilites is not empty %}
+        <h2 style="color:#173b5f; font-size:18px; margin:25px 0 15px;">
+            Vos disponibilités
+        </h2>
+
+        <p style="font-size:15px; line-height:1.7;">
+            Vous nous avez indiqué les créneaux suivants :
+        </p>
+
+        {% set jours = {
+            'mardi': 'Mardi',
+            'mercredi': 'Mercredi',
+            'jeudi': 'Jeudi',
+            'vendredi': 'Vendredi',
+            'samedi': 'Samedi'
+        } %}
+
+        {% for jour, label in jours %}
+            {% set matin = jour ~ '_morning' %}
+            {% set apresMidi = jour ~ '_afternoon' %}
+
+            {% if disponibilites[jour] is defined
+                or disponibilites[matin] is defined
+                or disponibilites[apresMidi] is defined %}
+
+                <p style="font-size:14px; line-height:1.7; margin:0 0 8px;">
+                    <strong>{{ label }}</strong>
+                    {% if disponibilites[matin] is defined %}
+                        — 9h - 12h
+                    {% endif %}
+                    {% if disponibilites[apresMidi] is defined %}
+                        — 14h - 18h
+                    {% endif %}
+                </p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <p style="font-size:15px; line-height:1.7; margin:25px 0 18px;">
+        Notre équipe prendra connaissance de votre demande et reviendra vers vous dans les meilleurs délais.
+    </p>
+
+    <p style="font-size:15px; line-height:1.7; margin:0;">
+        Bien cordialement,<br>
+        <strong style="color:#173b5f;">L'équipe de l'Agence Baes</strong>
+    </p>
+
+{% endblock %}

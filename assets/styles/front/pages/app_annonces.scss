@@ -1,0 +1,702 @@
+@use "sass:color";
+
+@use "../../abstracts/index" as baba;
+@use "../menu.scss";
+//@use "../hero.scss";
+@use "../ctaBtn.scss";
+@use "../footer";
+@use "../contact.scss";
+@use "_keyframes";
+@use "../animation.scss";
+@use "../consentGoogle";
+
+
+.hero{
+    position: relative;
+    height: var(--heightDesktop);
+    transition: height 0.3s ease;
+    overflow: hidden;
+    &--close-mobile{
+        height: var(--heightCloseMobile);
+    }
+    &__btn-form{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap:1rem;
+        background-color: baba.$color-bg;
+        border: solid 1px baba.$color-blue-light;
+        border-radius: 0.2rem;
+        padding: 5px 10px;
+        cursor: pointer;
+        & svg{
+             stroke: baba.$color-bg;
+        }
+        position: absolute;
+        top:0;
+        left:0;
+        transform: translateX(10px) translateY(10px);
+
+    }
+    &__btn-svg{
+        display: flex;
+        align-items: center;
+        border: solid 1px baba.$color-bg;
+        background-color: baba.$color-blue;
+        border-radius: 0.3rem;
+        padding: 5px;
+
+    }
+    &__btn-label{
+        display: flex;
+        align-items: center;
+        font-family: baba.$font-body;
+        color: baba.$color-text;
+        font-size: baba.$font-size-paragraphe-4;
+        font-weight: 600;
+    }
+
+    background: linear-gradient(
+        180deg,
+        rgba(baba.$color-blue-2, 1) 0%,
+        rgba(baba.$color-blue,1) 80%
+    );
+    @include baba.media-up('lg'){
+        background: initial;
+    }
+     &__img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 30% center;
+        @include baba.media-up('xs'){
+            display: none;
+        }
+        @include baba.media-up('md'){
+            display: block;
+        }
+
+    }
+
+
+    &__title{
+        z-index: 1;
+        text-align: right;
+        padding-left: 10px;
+        padding-right: 10px;
+          @include baba.media-up('xs'){
+            @include baba.heading-2();
+        }
+        @include baba.media-up('md'){
+            margin-left: auto;
+        @include baba.heading-1();}
+
+        @include baba.col('md',11);
+        @include baba.col('xl',12);
+
+        color: baba.$color-bg;
+    }
+    &__wrapper-fieldsets--destock{
+        height: 0px;
+        @include baba.media-up('md'){
+            height: auto;
+        }
+    }
+    &__wrapper-fieldsets--mobile{
+        padding: 5px;
+    }
+    &__svg-annonce{
+        display: none;
+        top:0;
+        left:0;
+        position: absolute;
+        z-index: -1;
+        path{
+            fill: url(#heroFade);
+        }
+        @include baba.media-up('lg'){
+            display: block;
+        }
+
+    }
+    &__picture{
+        z-index: -1;
+        position: relative;
+    }
+    &__wrapper-form_title{
+       // background-color: rgba(baba.$color-blue,0.9);
+       position: absolute;
+       top:0;
+       right: 0;
+       display: flex;
+        @include baba.direction('xs', column);
+        @include baba.col('xs', 12);
+        @include baba.col('lg', 10);
+        padding-right: 20px;
+
+        @include baba.media-up('xs'){
+            margin-top: var(--marginTopTablet);
+        }
+         @include baba.media-up('lg'){
+            margin-top: initial;
+        }
+
+    }
+    &__form-search{
+        transform: opacity 0.2s ease;
+        @include baba.media-up('xs'){
+            &--opacity-null{
+            opacity: 0;
+            }
+        }
+         @include baba.media-up('md'){
+            &--opacity-null{
+            opacity: initial;
+            }
+        }
+
+    }
+    &__search-form__wrapper-first{
+        display: flex;
+        @include baba.justify('xs', center);
+    }
+    &__search-form__wrapper-second{
+        margin-top: 100px;
+        display: flex;
+        @include baba.justify('xs', center);
+        @include baba.align('xs', stretch);
+    }
+    &__danger-max-ville{
+        color: baba.$color-text-secondary;
+        font-size: baba.$font-size-paragraphe-2;
+        font-family: baba.$font-body;
+        font-weight: bold;
+        transition: opacity 0.3s ease;
+        z-index:0;
+        position: relative;
+        &--opacity-null{
+            opacity: 0;
+        }
+    }
+    &__search-form__field--ville-wrapper{
+        display: flex;
+        @include baba.direction('xs', column);
+        label{
+            margin-bottom: 10px;
+        }
+    }
+    &__select-villes{
+        opacity: 0;
+        position: absolute;
+        z-index: -500;
+    }
+    &__search-form__field{
+        margin-left: auto;
+        margin-right: auto;
+        @include baba.col('sm', 8);
+        @include baba.col('md', 5);
+        @include baba.col('xl', 4);
+        @include baba.media-up('md'){
+            border: 1px solid rgba(baba.$color-sand,0.7);
+        }
+         border-top:solid 1px rgba(baba.$color-sand,0.7);
+         &:last-child{
+           border-bottom: 1px solid rgba(baba.$color-sand,0.7);
+         }
+        border-left: 1px solid rgba(baba.$color-sand,0.7);
+        border-right: 1px solid rgba(baba.$color-sand,0.7);
+        @include baba.media-up('md'){
+
+        margin-left: clamp(10px, 3vw, 50px);
+        margin-right: clamp(10px, 3vw, 50px);}
+
+        padding: 20px 20px;
+        position: relative;
+        &--mobile{
+        height: var(--mobile-field-height);
+        overflow: hidden;
+        transition: height 0.3s ease;
+        &--open{
+            height: var(--mobile-field-open-height);
+        }
+        }
+    }
+    &__search-form__toggle{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background-color: baba.$color-bg;
+    }
+    &__search-form__header{
+        margin-bottom: 10px;
+    }
+    &__input-autocomplete{
+        box-sizing: border-box;
+        border: none;
+         text-transform: uppercase;
+         border: solid 1px baba.$color-sand;
+         font-family: baba.$font-body;
+         font-size: baba.$font-size-paragraphe-2;
+         padding-left: 10px;
+         &:focus {
+            outline: none;
+        }
+
+    }
+    &__search-form__ville{
+        margin-right: 5px;
+        margin-top: 5px;
+        display: inline-flex;
+        align-items: stretch;
+        flex: 0 0 auto;
+        &--text{
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background-color: baba.$color-sand;
+            padding: 5px;
+            font-size: baba.$font-size-paragraphe-3;
+        }
+        &--remove{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background: baba.$color-sand;
+            border: 0;
+            border-left: solid 1px baba.$color-text;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &__search-form__field--ville{
+        position: relative;
+        label{
+             font-family: baba.$font-body;
+             font-size: baba.$font-size-paragraphe-3;
+             color: baba.$color-bg;
+        }
+    }
+    &__search-form__villes-selected{
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 20px;
+        gap :5px;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+    &__search-form__field--ville-find{
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: baba.$font-body;
+        color: baba.$color-bg;
+        font-size: baba.$font-size-paragraphe-2;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top:0px;
+        background-color: baba.$color-bg;
+        color: baba.$color-text;
+        touch-action: none;
+       /* border-right: solid 1px baba.$color-sand;
+        border-left: solid 1px baba.$color-sand;*/
+        &:last-child{
+            border-bottom: 0px;
+        }
+        border-bottom: solid 1px baba.$color-sand;
+        &--selected,&:hover{
+            background-color: baba.$color-sand;
+            color: baba.$color-bg;
+            cursor: pointer;
+        }
+
+    }
+    &__search_form__autocomplete-list{
+        touch-action: none;
+        z-index: 2;
+        &--border{
+            border: 1px solid baba.$color-sand;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top: 0px;
+            border-color: baba.$color-sand;
+        }
+
+        max-height: 100px;
+        overflow:auto;
+    }
+    &__label-type-bien{
+        margin-bottom: 10px;
+        color: baba.$color-bg;
+        display: block;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-4;
+    }
+    &__input-type-bien, &__input-chambres{
+        position: relative;
+        input{
+            opacity: 0;
+            width: 0px;
+            position: absolute;
+            z-index: -50;
+        }
+        label{
+            cursor: pointer;
+            font-family: baba.$font-body;
+            font-size: baba.$font-size-paragraphe-4;
+            color:baba.$color-bg;
+        }
+    }
+    &__input-fake-checkbox{
+        width: clamp(10px, 2vw, 15px);
+        height: clamp(10px, 2vw, 15px);
+        border: solid 1px baba.$color-sand;
+        display: inline-block;
+        position: relative;
+        margin-left: 10px;
+        margin-right: 10px;
+        &--is-checked{
+            background-color: baba.$color-sand;
+        &::after {
+         content: "";
+        position: absolute;
+        width: 35%;
+        height: 60%;
+        border-right: 2px solid baba.$color-bg;
+        border-bottom: 2px solid baba.$color-bg;
+        transform: rotate(45deg);
+        top: 12%;
+        left: 27%;
+     }
+     }
+
+    }
+    &__input-fake-radio {
+    width: clamp(10px, 2vw, 15px);
+    height: clamp(10px, 2vw, 15px);
+    border: 1px solid baba.$color-sand;
+   // border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    margin-left: 5px;
+    &--is-checked {
+        background-color: baba.$color-sand;
+        &::after {
+            content: "";
+                position: absolute;
+                width: 35%;
+                height: 60%;
+                border-right: 2px solid baba.$color-bg;
+                border-bottom: 2px solid baba.$color-bg;
+                transform: rotate(45deg);
+                top: 12%;
+                left: 27%;
+        }
+        }
+    }
+    &__label-chambres{
+        margin-bottom: 10px;
+        color: baba.$color-bg;
+        display: block;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-4;
+
+    }
+    &__input-chambres{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        label{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: clamp(4px, 1vw, 10px);
+            margin-right: clamp(4px, 1vw, 10px);
+        }
+    }
+    &__input-type-bien{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        label{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    &__price-range {
+        position: relative;
+        height: 20px;
+        margin-top: 10px;
+    }
+
+    &__price-track {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: baba.$color-sand;
+
+    }
+
+    &__price-thumb {
+        box-sizing: border-box;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 1px solid baba.$color-sand;
+        border-radius: 50%;
+        background: baba.$color-bg;
+        touch-action: none;
+    }
+     &__price-track-min,&__price-track-max{
+            box-sizing: border-box;
+            display: block;
+            height: 3px;
+            background: lighten(baba.$color-sand, 20%);
+            position: absolute;
+            top: 50%;
+            position: absolute;
+        }
+     &__price-track-min{
+        width: 0%;
+        top: 0;
+     }
+     &__price-track-max{
+        width: 0%;
+        top: 0;
+     }
+    &__input-loyer{
+    display: flex;
+    @include baba.direction('xs', row);
+    @include baba.justify('xs', space-between);
+    >div{
+       display: flex;
+        @include baba.direction('xs', column);
+    }
+    }
+    &__input-loyer-min, &__input-loyer-max{
+        width: 50px;
+        border-radius: 5px;
+        border-color: transparent;
+        &:focus{
+            outline: none;
+            border-radius: 5px;
+            background: baba.$color-bg;
+            box-shadow: none;
+        }
+    }
+    &__label-loyer{
+        margin-bottom: 10px;
+        color: baba.$color-bg;
+        display: block;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-4;
+
+    }
+    &__label-loyer-max, &__label-loyer-min{
+        color: baba.$color-bg;
+        display: block;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-4;
+        margin-bottom: 5px;
+    }
+    &__search-form__submit-wrapper{
+        margin-top: 50px;
+        display: flex;
+        @include baba.justify('xs',center);
+        @include baba.col('lg',3);
+    }
+    &__search-form__submit{
+         border:none;
+         position: relative;
+         &--is-loading {
+        pointer-events: none;
+        color: transparent;
+        &::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: search-loader 0.7s linear infinite;
+            }
+        }
+
+    }
+    &__search-form__header--mobile{
+        @include baba.media-up('md'){
+            display: none;
+        }
+        margin-bottom: 20px;
+    }
+    &__label--desktop{
+        display: none;
+        @include baba.media-up('md'){
+            display: block;
+        }
+    }
+    &__count{
+        transition: opacity 0.3s ease ;
+        opacity: 0;
+        &--is-visible{
+        opacity: 1;
+        }
+
+    }
+    &__search-form__wrapper-three{
+        display: flex;
+        @include baba.justify('xs',center);
+    }
+}
+
+.annonces{
+
+    background-color: baba.$color-bg;
+     transition: opacity 0.2s ease;
+    //min-height: 500px;
+    &--padding{
+     padding-top: 100px;
+     padding-bottom: 100px;
+    }
+    &--fadeOut{
+        opacity: 0;
+    }
+    &__wrapper{
+        padding: 10px;
+        margin-bottom: 50px;
+        @include baba.col('md', 5);
+        @include baba.col('lg', 4);
+    }
+    &__container{
+         padding-top: clamp(50px,6vw,100px);
+        display: flex;
+        @include baba.direction('xs', column);
+        @include baba.direction('md', row);
+        @include baba.justify('xs', space-around);
+        @include baba.align('xs', center);
+    }
+
+    &__title{
+       font-family: baba.$font-title;
+       font-size: baba.$font-size-h4;
+       color:baba.$color-blue;
+    }
+    &__picture{
+        position: relative;
+        display: block;
+        height: clamp(220px, 25vw, 400px);
+        transition: opacity 0.2s ease;
+        &::after{
+        content: '';
+        @include baba.loaderImg();
+        }
+        &--exit{
+            &::after{
+                opacity: 0;
+            }
+
+        }
+    }
+    &__picture__loader{
+        @include baba.loaderImg();
+       &--exit{
+            @include baba.loaderImgExit();
+        }
+    }
+   &__img {
+    position: relative;
+    width: 100%;
+    height: clamp(220px, 25vw, 400px);
+    object-fit: cover;
+    box-shadow: 1px 10px 40px rgba(baba.$color-blue,0.5);
+    visibility: hidden;
+    transform: translateX(-1000%);
+   // opacity: 0;
+    &--translateNull{
+       transform: translateX(0);
+       visibility: visible;
+    }
+    }
+    &__details{
+       font-family: baba.$font-body;
+       font-size: baba.$font-size-paragraphe-2;
+       color:baba.$color-text;
+       margin-top: 25px;
+       margin-bottom: 25px;
+       letter-spacing: 1px;
+       padding-top: 10px;
+       padding-bottom: 10px;
+       display: flex;
+       align-items: center;
+       font-weight: 500;
+       svg{
+        margin-right: 10px ;
+        fill: baba.$color-sand;
+       }
+
+    }
+    &__paragraphe{
+        letter-spacing: 1px;
+        font-family: baba.$font-body;
+        font-size: baba.$font-size-paragraphe-4;
+        color:baba.$color-text;
+        font-weight: 600;
+    }
+    &__btn{
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-top: 80px;
+        font-size: baba.$font-size-paragraphe-2;
+        }
+    .pagination{
+        @include baba.justify('xs', center);
+        display: flex;
+        margin-top: 25px;
+        padding-bottom: clamp(50px, 6vw, 100px);
+         button{
+            margin-right: 10px;
+            border: none;
+            padding: 10px;
+         }
+
+         &__page, &__next, &__prev{
+            background-color: baba.$color-blue-2;
+             color: baba.$color-bg;
+             transition: background-color 0.3s ease;
+            &--is-active{
+                background-color: baba.$color-blue;
+            }
+            &:hover{
+                cursor: pointer;
+                background-color: darken(baba.$color-blue-2, 5%);
+            }
+         }
+    }
+}
+
+
+
+@keyframes search-loader {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@include baba.keyframesLoaderImg();

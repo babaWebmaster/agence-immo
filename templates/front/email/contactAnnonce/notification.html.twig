@@ -1,0 +1,81 @@
+{% extends 'front/email/base.html.twig' %}
+
+{% block subject %}Nouvelle demande de contact – Agence Baes{% endblock %}
+
+{% block content %}
+
+    <h1 style="margin:0 0 25px; color:#173b5f; font-size:23px; font-weight:600;">
+        Nouvelle demande concernant une annonce
+    </h1>
+
+    <p style="font-size:15px; line-height:1.7; margin:0 0 25px;">
+        Une nouvelle demande de contact vient d'être envoyée depuis le site.
+    </p>
+
+    <h2 style="color:#173b5f; font-size:18px; margin:25px 0 15px;">
+        Coordonnées du demandeur
+    </h2>
+
+    <p style="font-size:15px; line-height:1.8; margin:0 0 20px;">
+        <strong>Nom :</strong> {{ prenom }} {{ nom }}<br>
+        <strong>E-mail :</strong>  <a href="mailto:{{ clientEmail }}" style="color:#2D638A; text-decoration:none;">
+                    {{ clientEmail }}
+        </a><br>
+        <strong>Téléphone :</strong>  <a href="tel:{{ telephone }}" style="color:#2D638A; text-decoration:none;">
+                    {{ telephone }}
+                </a>
+    </p>
+
+    <h2 style="color:#173b5f; font-size:18px; margin:25px 0 15px;">
+        Message
+    </h2>
+
+    <p style="font-size:15px; line-height:1.7; margin:0 0 25px; white-space:pre-line;">
+        {{ message }}
+    </p>
+
+    <h2 style="color:#173b5f; font-size:18px; margin:25px 0 15px;">
+        Annonce concernée
+    </h2>
+
+    <p style="font-size:15px; line-height:1.7; margin:0 0 25px;">
+        <a href="{{ annonceUrl }}" style="color:#173b5f; font-weight:600;">
+            Consulter l'annonce
+        </a>
+    </p>
+
+    {% if disponibilites is not empty %}
+        <h2 style="color:#173b5f; font-size:18px; margin:25px 0 15px;">
+            Disponibilités proposées
+        </h2>
+
+        {% set jours = {
+            'mardi': 'Mardi',
+            'mercredi': 'Mercredi',
+            'jeudi': 'Jeudi',
+            'vendredi': 'Vendredi',
+            'samedi': 'Samedi'
+        } %}
+
+        {% for jour, label in jours %}
+            {% set matin = jour ~ '_morning' %}
+            {% set apresMidi = jour ~ '_afternoon' %}
+
+            {% if disponibilites[jour] is defined
+                or disponibilites[matin] is defined
+                or disponibilites[apresMidi] is defined %}
+
+                <p style="font-size:14px; line-height:1.7; margin:0 0 8px;">
+                    <strong>{{ label }}</strong>
+                    {% if disponibilites[matin] is defined %} — 9h - 12h{% endif %}
+                    {% if disponibilites[apresMidi] is defined %} — 14h - 18h{% endif %}
+                </p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <p style="font-size:13px; line-height:1.6; color:#66727b; margin:30px 0 0;">
+        Notification automatique du site de l'Agence Baes.
+    </p>
+
+{% endblock %}
